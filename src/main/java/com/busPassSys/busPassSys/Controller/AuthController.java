@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://bus-pass-frontend-zeta.vercel.app")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

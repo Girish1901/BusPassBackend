@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://bus-pass-frontend-zeta.vercel.app")
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
