@@ -22,29 +22,42 @@ public class RouteService {
         route.setUser(u);
         return routeRepository.save(route);
     }
-    public List<Route>getAllRoutes(){
-        return routeRepository.findAll();
+    public List<Route> searchRoutes(String startPoint,String endPoint) {
+        return routeRepository
+                .findByStarPointAndEndPoint(
+                        startPoint,
+                        endPoint);
+    }
+        public List<Route> searchRoutesByStartPoint(String startPoint) {
+        return routeRepository
+                .findByStarPoint(startPoint);
     }
 
     public List<Route>getRoutesByUserId(String email){
         return routeRepository.findByUserEmail(email);
     }
+    public Route getRouteByName(String routeName){
+        return routeRepository.findByRouteName(routeName);
+    }
 
+    public List<Route>getAllRoutes(){
+        return routeRepository.findAll();
+    }
     public Route getRouteById(Long id){
         return routeRepository.findById(id).orElse(null);
     }
     @Transactional
-    public boolean updateRoute(Route route){
-        Route r=getRouteById(route.getRouteId());
+    public Route updateRoute(Route route,String routename){
+        Route r=routeRepository.findByRouteName(routename);
         if(r!=null){
             r.setRouteName(route.getRouteName()!=null?route.getRouteName():r.getRouteName());
             r.setStarPoint(route.getStarPoint()!=null?route.getStarPoint():r.getStarPoint());
             r.setEndPoint(route.getEndPoint()!=null?route.getEndPoint():r.getEndPoint());
             r.setFare(route.getFare()!=0?route.getFare():r.getFare());
             routeRepository.save(r);
-            return true;
+            return r;
         }
-        return false;
+        return null;
     }
     @Transactional
     public boolean deleteRoute(Long id){

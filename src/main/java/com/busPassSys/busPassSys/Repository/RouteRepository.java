@@ -11,5 +11,7 @@ import java.util.List;
 public interface RouteRepository extends JpaRepository<Route,Long>{
     List<Route> findByUser(User user);
     List<Route>findByUserEmail(String email);
-
+    List<Route> findByStarPointAndEndPoint(String starPoint, String endPoint);
+    List<Route> findByStarPoint(String starPoint);
+    Route findByRouteName(String routeName);
 }

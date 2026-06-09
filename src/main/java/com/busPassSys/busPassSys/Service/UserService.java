@@ -24,15 +24,15 @@ public class UserService {
         return userRepository.findAll();
     }
     @Transactional
-    public boolean updateUser(User user){
+    public User updateUser(User user){
         User u=userRepository.findByEmail(user.getEmail());
         if(u!=null){
             u.setUserName(user.getUserName()!=null? user.getUserName() : u.getUserName());
             u.setPhone(user.getPhone()!=null? user.getPhone() : u.getPhone());
             createUser(u);
-            return true;
+            return u;
         }
-        return false;
+        return null;
     }
     @Transactional
     public boolean deleteUserByEmail(String email){
